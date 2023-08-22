@@ -42,7 +42,8 @@ public class App {
         LOGGER.info("Planet_By_Id = " + planetService.getById("MAR04")); // Planet(id=MAR04, name=Mars)
         LOGGER.info("Planet_By_Name = " + planetService.getByName("Saturn")); // Planet(id=SAT06, name=Saturn)
         LOGGER.info("All_Planets = " + planetService.allPlanets());
-        planetService.update("PLU09", "Pluton");
+        planetService.updateName("PLU09", "Pluton");
+        planetService.updateId("Pluton","PLU999");
         LOGGER.info("Planet_By_Id = " + planetService.getById("PLU09")); // Planet(id=PLU09, name=Pluton)
         LOGGER.info("All_Planets = " + planetService.allPlanets());
         planetService.delete("PLU09");
