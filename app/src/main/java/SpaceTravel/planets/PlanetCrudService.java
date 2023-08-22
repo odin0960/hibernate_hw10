@@ -1,6 +1,5 @@
 package SpaceTravel.Planets;
 
-import SpaceTravel.Planets.Planet;
 import SpaceTravel.DatabaseServices.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -22,7 +21,6 @@ public class PlanetCrudService {
             LOGGER.error("The Planet name has to consist only digits and upper case", ex);
         }
     }
-
 
     public Planet getById(String id) {
         try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {

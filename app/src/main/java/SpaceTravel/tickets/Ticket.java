@@ -1,13 +1,13 @@
-package SpaceTravel.tickets;
+package SpaceTravel.Tickets;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Timestamp;
 
+@Data
 @Entity
 @Table(name = "ticket")
-@Data
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
