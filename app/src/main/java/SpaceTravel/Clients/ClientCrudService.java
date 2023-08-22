@@ -1,4 +1,4 @@
-package SpaceTravel.Clients;
+package SpaceTravel.clients;
 
 import SpaceTravel.DatabaseServices.HibernateUtil;
 import org.hibernate.Session;
@@ -12,7 +12,7 @@ import java.util.List;
 public class ClientCrudService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ClientCrudService.class);
 
-    public void create(SpaceTravel.clients.Client client) {
+    public void create(Client client) {
         Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(client);
