@@ -12,17 +12,17 @@ import java.util.List;
 public class ClientCrudService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ClientCrudService.class);
 
-    public void create(SpaceTravel.clients.Client client) {
-        Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.persist(client);
-        transaction.commit();
-        session.close();
+    public void create(Client client) {
+        try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.persist(client);
+            transaction.commit();
+        } catch (Exception ex) {
+            LOGGER.error("The name length must be greater than 2 character but less than 200 characters", ex);
+        }
     }
 
-    public long newClient(String name) {
-
-        long id = -1L;
+    public void newClient(String name) {
         try {
             if (name == null || name.length() > 200 || name.length() < 3) {
                 throw new IllegalArgumentException();
@@ -30,26 +30,36 @@ public class ClientCrudService {
                 Client client = new Client();
                 client.setName(name);
                 create(client);
-                return client.getId();
             }
         } catch (Exception ex) {
             LOGGER.error("The name length must be greater than 2 character but less than 200 characters", ex);
         }
-        return id;
     }
 
-    public Client getById(long id)  {
+    public Client getById(long id) {
         try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
-            return session.get(Client.class, id);
+            if (session.get(Client.class, id) == null) {
+                throw new IllegalArgumentException();
+            } else {
+                return session.get(Client.class, id);
+            }
+        } catch (Exception ex) {
+            LOGGER.error("The client with such ID is not exist", ex);
         }
     }
 
-    public Client getByName(String name)  {
+    public Client getByName(String name) {
         try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             Query<Client> query = session.createQuery("from Client where name = :name", Client.class);
             query.setParameter("name", name);
-            return query.getSingleResult();
+            if (query.getSingleResult() == null) {
+                throw new IllegalArgumentException();
+            } else {
+                return query.getSingleResult();
 //            return query.stream().findFirst().orElse(null);
+            }
+        } catch (Exception ex) {
+            LOGGER.error("The client with such Name is not exist", ex);
         }
     }
 
@@ -59,7 +69,7 @@ public class ClientCrudService {
         }
     }
 
-    public void update(long id, String newName)  {
+    public void update(long id, String newName) {
         try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             Client updatedClient = getById(id);
             if (updatedClient == null) {
@@ -67,7 +77,7 @@ public class ClientCrudService {
             } else {
                 Transaction transaction = session.beginTransaction();
                 updatedClient.setName(newName);
-                session.persist(updatedClient);
+                session.merge(updatedClient);
                 transaction.commit();
             }
         } catch (Exception ex) {
@@ -90,30 +100,3 @@ public class ClientCrudService {
         }
     }
 }
-
-//    session.createQuery("delete from Client where id = :id")
-//        .setParameter("id", id)
-//        .executeUpdate();
-
-//        session.createNativeQuery("DELETE FROM user WHERE id = :id")
-//        .setParameter("id", user.getId())
-//        .executeUpdate();
-
-//    Client client = getById(id);
-//            session.createQuery("from Client", Client.class).list();
-//        session.persist(updatedClient);
-
-
-//    Query<Passenger> query = session.createQuery(
-//            "from Passenger where passport = :passport",
-//            Passenger.class
-//    );
-//            query.setParameter("passport", passport);
-//            return query.stream().findFirst().orElse(null);
-
-//            Query<Long> query = session.createQuery(
-//                    "select count(id) from Ticket t WHERE t.to = :to",
-//                    Long.class);
-//            query.setParameter("to", planet);
-//            return query.getSingleResult();
-

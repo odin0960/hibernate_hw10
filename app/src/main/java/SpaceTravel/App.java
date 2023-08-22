@@ -2,7 +2,8 @@ package SpaceTravel;
 
 import SpaceTravel.Clients.ClientCrudService;
 import SpaceTravel.DatabaseServices.DatabaseInitService;
-import SpaceTravel.Planets.*;
+import SpaceTravel.Planets.Planet;
+import SpaceTravel.Planets.PlanetCrudService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;

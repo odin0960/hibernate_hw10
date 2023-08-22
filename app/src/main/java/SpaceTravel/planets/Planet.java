@@ -1,15 +1,16 @@
-package SpaceTravel.planets;
+package SpaceTravel.Planets;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "planet")
-@Data
 public class Planet {
     @Id
+    @Column (name = id, nullable = false)
     private String id;
 
-    @Column(name = "name", length = 500)
+    @Column(name = "name", nullable = false, length = 500)
     private String name;
 }
