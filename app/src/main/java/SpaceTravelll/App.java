@@ -18,21 +18,21 @@ public class App {
 
         new DatabaseInitService().initDb();
 
-//        String name = "George Bush";
-//        String name3 = "X";
-//        String newName = "Donald Trump";
-//
-//        ClientCrudService clientService = new ClientCrudService();
-//        clientService.newClient(name);
-//        clientService.newClient(name3);
-//        LOGGER.info("Client_By_Id = %s".formatted(clientService.getById(10L))); //Client(id=10, name=Oleksandr Karavayev)
-//        LOGGER.info("Client_By_Name = %s".formatted(clientService.getByName(name))); //Client(id=13, name=George Bush)
-//        LOGGER.info("All_Clients = %s".formatted(clientService.allClients()));
-//        clientService.update(13L, newName);
-//        LOGGER.info("Client_By_Id = %s".formatted(clientService.getById(13L))); //Client(id=13, name=Donald Trump)
-//        LOGGER.info("All_Clients = %s".formatted(clientService.allClients()));
-//        clientService.delete(13L);
-//        LOGGER.info("All_Clients = %s".formatted(clientService.allClients()));
+        String name = "George Bush";
+        String name3 = "X";
+        String newName = "Donald Trump";
+
+        ClientCrudService clientService = new ClientCrudService();
+        clientService.newClient(name);
+        clientService.newClient(name3);
+        LOGGER.info("Client_By_Id = %s".formatted(clientService.getById(10L))); //Client(id=10, name=Oleksandr Karavayev)
+        LOGGER.info("Client_By_Name = %s".formatted(clientService.getByName(name))); //Client(id=13, name=George Bush)
+        LOGGER.info("All_Clients = %s".formatted(clientService.allClients()));
+        clientService.update(13L, newName);
+        LOGGER.info("Client_By_Id = %s".formatted(clientService.getById(13L))); //Client(id=13, name=Donald Trump)
+        LOGGER.info("All_Clients = %s".formatted(clientService.allClients()));
+        clientService.delete(13L);
+        LOGGER.info("All_Clients = %s".formatted(clientService.allClients()));
 
         PlanetCrudService planetService = new PlanetCrudService();
         Planet planet = new Planet();
