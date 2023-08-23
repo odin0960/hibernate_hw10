@@ -1,4 +1,4 @@
-package SpaceTravel.DatabaseServices;
+package SpaceTravelll.DatabaseServices;
 
 import org.flywaydb.core.Flyway;
 

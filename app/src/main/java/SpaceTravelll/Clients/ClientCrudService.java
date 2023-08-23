@@ -1,6 +1,6 @@
-package SpaceTravel.Clients;
+package SpaceTravelll.Clients;
 
-import SpaceTravel.DatabaseServices.HibernateUtil;
+import SpaceTravelll.DatabaseServices.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -46,6 +46,7 @@ public class ClientCrudService {
         } catch (Exception ex) {
             LOGGER.error("The client with such ID is not exist", ex);
         }
+        return null;
     }
 
     public Client getByName(String name) {
@@ -61,6 +62,7 @@ public class ClientCrudService {
         } catch (Exception ex) {
             LOGGER.error("The client with such Name is not exist", ex);
         }
+        return null;
     }
 
     public List<Client> allClients() {

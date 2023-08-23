@@ -1,4 +1,4 @@
-package SpaceTravel.Planets;
+package SpaceTravelll.Planets;
 
 import jakarta.persistence.*;
 import lombok.Data;

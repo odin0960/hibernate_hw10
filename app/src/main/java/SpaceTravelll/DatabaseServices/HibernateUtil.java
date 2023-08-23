@@ -1,8 +1,8 @@
-package SpaceTravel.DatabaseServices;
+package SpaceTravelll.DatabaseServices;
 
-import SpaceTravel.Clients.Client;
-import SpaceTravel.Tickets.Ticket;
-import SpaceTravel.Planets.Planet;
+import SpaceTravelll.Clients.Client;
+import SpaceTravelll.Planets.Planet;
+import SpaceTravelll.Tickets.Ticket;
 import lombok.Getter;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

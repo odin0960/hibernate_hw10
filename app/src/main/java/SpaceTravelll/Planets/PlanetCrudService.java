@@ -1,6 +1,6 @@
-package SpaceTravel.Planets;
+package SpaceTravelll.Planets;
 
-import SpaceTravel.DatabaseServices.HibernateUtil;
+import SpaceTravelll.DatabaseServices.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -32,6 +32,7 @@ public class PlanetCrudService {
         } catch (Exception ex) {
             LOGGER.error("The planet with such ID is not exist", ex);
         }
+        return null;
     }
 
     public Planet getByName(String name) {
@@ -47,6 +48,7 @@ public class PlanetCrudService {
         } catch (Exception ex) {
             LOGGER.error("The planet with such Name is not exist", ex);
         }
+        return null;
     }
 
     public List<Planet> allPlanets() {
@@ -68,22 +70,6 @@ public class PlanetCrudService {
             }
         } catch (Exception ex) {
             LOGGER.error("The planet with such ID is not exist", ex);
-        }
-    }
-
-    public void updateId(String name, String newId) {
-        try (Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
-            Planet updatedPlanet = getByName(name);
-            if (updatedPlanet == null) {
-                throw new IllegalArgumentException();
-            } else {
-                Transaction transaction = session.beginTransaction();
-                updatedPlanet.setId(newId);
-                session.merge(updatedPlanet);
-                transaction.commit();
-            }
-        } catch (Exception ex) {
-            LOGGER.error("The planet with such Name is not exist", ex);
         }
     }
 
